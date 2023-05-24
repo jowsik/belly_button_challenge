@@ -11,25 +11,25 @@ d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1
             .property("value", names[i]);
     };
 
-    buildmetadata(names[0])
-    buildCharts(names[0])
+    createMetadata(names[0])
+    createCharts(names[0])
 
 })
 
-function buildmetadata(id) {
+function createMetadata(id) {
     d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) => {
         let metadata = data.metadata;
         console.log(metadata)
 
-        let resultArray = metadata.filter(mate => mate.id == id);
-        let result = resultArray[0];
-        console.log(resultArray)
+        let grabArray = metadata.filter(mate => mate.id == id);
+        let result = grabArray[0];
+        console.log(grabArray)
 
-        let panel = d3.select("#sample-metadata");
-        panel.html("");
+        let sample = d3.select("#sample-metadata");
+        sample.html("");
 
         for (key in result) {
-            panel
+            sample
                 .append("h6")
                 .text(`${key.toUpperCase()}: ${result[key]}`);
         };
@@ -40,11 +40,11 @@ function buildmetadata(id) {
 
 function optionChanged(id) {
 
-    buildmetadata(id)
-    buildCharts(id)
+    createMetadata(id)
+    createCharts(id)
 }
 
-function buildCharts(id) {
+function createCharts(id) {
     d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) => {
         let samples = data.samples;
         console.log("samples")
